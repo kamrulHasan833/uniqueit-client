@@ -1,5 +1,11 @@
+import Brands from "../sections/Brands";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <main>
+      <Brands></Brands>
+    </main>
+  );
 }
 
 export default Home;

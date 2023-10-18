@@ -1,3 +1,4 @@
+import SectionWrapperBig from "../layout/SectionWrapperBig";
 import Slider from "../shared/Slider";
 
 const slides = [
@@ -16,7 +17,11 @@ const slides = [
 ];
 
 function HeroSlider() {
-  return <Slider grow="flex-grow " slides={slides}></Slider>;
+  return (
+    <SectionWrapperBig>
+      <Slider grow="flex-grow " slides={slides}></Slider>
+    </SectionWrapperBig>
+  );
 }
 
 export default HeroSlider;

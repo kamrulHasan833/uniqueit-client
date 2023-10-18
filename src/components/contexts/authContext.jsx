@@ -6,7 +6,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -41,20 +40,10 @@ function AuthProvider({ children }) {
     });
   }, [auth]);
   // register user
-  const register = (image, name, email, password) => {
+  const register = (email, password) => {
     setError(false);
     setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((data) => {
-        setUser(data.user);
-
-        // update profile
-        updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: image,
-        });
-      })
-      .catch((err) => setError(err));
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // login
@@ -81,6 +70,7 @@ function AuthProvider({ children }) {
         loading,
         error,
         login,
+        auth,
         loginWithGoogle,
         logout,
       }}

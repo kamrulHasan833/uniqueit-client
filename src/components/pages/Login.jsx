@@ -25,10 +25,8 @@ function Login() {
             title: "Success!",
             text: "You have logged in successfully.",
             icon: "success",
-            showCancelButton: true,
             confirmButtonColor: "#22015B",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Continue",
+            confirmButtonText: "Go On",
           }).then((result) => {
             if (result.isConfirmed) {
               navigate(state.pathname, {
@@ -42,10 +40,8 @@ function Login() {
             title: "Success!",
             text: "You have logged in successfully.",
             icon: "success",
-            showCancelButton: true,
             confirmButtonColor: "#22015B",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Explore",
+            confirmButtonText: "Go On",
           }).then((result) => {
             if (result.isConfirmed) {
               navigate("/");

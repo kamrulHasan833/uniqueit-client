@@ -1,12 +1,20 @@
+import { updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useAuth } from "../contexts/authContext";
 import SectionWrapperSecodary from "../layout/SectionWrapperSecodary";
 import LoginButton from "../shared/LoginButton";
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const { error: newError, loginWithGoogle, loading } = useAuth();
+  const {
+    error: newError,
+    loginWithGoogle,
+
+    loading,
+    auth,
+  } = useAuth();
   console.log(loading);
 
   const [error, setError] = useState("");
@@ -15,8 +23,17 @@ function Signup() {
   const googleLogin = () => {
     loginWithGoogle()
       .then(() => {
-        // navigate to
-        setTimeout(() => navigate("/"), 2000);
+        Swal.fire({
+          title: "Success!",
+          text: "You have signed in successfully.",
+          icon: "success",
+          confirmButtonColor: "#22015B",
+          confirmButtonText: "Go On",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/");
+          }
+        });
       })
       .catch((err) => {
         setError(err);
@@ -45,10 +62,29 @@ function Signup() {
       setError(newError.code);
     } else {
       // register
-      register(image, name, email, password);
-
-      // navigate to
-      setTimeout(() => navigate("/"), 2000);
+      register(email, password)
+        .then(() => {
+          // update profile
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: image,
+          })
+            .then(() => {
+              Swal.fire({
+                title: "Success!",
+                text: "You have signed in successfully.",
+                icon: "success",
+                confirmButtonColor: "#22015B",
+                confirmButtonText: "Go On",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate("/");
+                }
+              });
+            })
+            .catch((err) => setError(err));
+        })
+        .catch((err) => setError(err));
     }
 
     // reset input fields

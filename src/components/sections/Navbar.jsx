@@ -1,15 +1,32 @@
 import HeadRoom from "react-headroom";
 import { BiLogOutCircle } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useIsUser from "../../hooks/useIsUser";
 import { useAuth } from "../contexts/authContext";
 import SectionWrapper from "../layout/SectionWrapper";
 import NavItem from "../shared/NavItem";
-
 function Navbar() {
-  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+  const { logout, user, loading } = useAuth();
   const { displayName, photoURL } = user;
-
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "If wanna logout, click Ok!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        Swal.fire("Success!", "You have  logged out successfully.", "success");
+        navigate("/");
+      }
+    });
+  };
   const currentUser = useIsUser();
   const items = (
     <>
@@ -59,7 +76,7 @@ function Navbar() {
                 <img
                   src="https://i.ibb.co/WfRcMh1/log.png"
                   alt="Logo"
-                  className="w-24 lg:w-28"
+                  className=" w-16 lg:w-20"
                 />
               </Link>
             </div>
@@ -69,9 +86,10 @@ function Navbar() {
               </ul>
             </div>
             <div className="navbar-end">
-              {currentUser && (
-                <div className="flex flex-col   items-center gap-1">
-                  <div className="w-10  rounded-full border ">
+              {/* user dropdown */}
+              {currentUser && !loading && (
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <div tabIndex={0} className=" m-1 w-10  rounded-full border ">
                     <img
                       src={
                         photoURL
@@ -82,27 +100,48 @@ function Navbar() {
                       className=" rounded-full "
                     />
                   </div>
-                  {displayName && (
-                    <div>
-                      <h3 className=" text-xs md:text-sm text-title-color font-medium text-center hover:bg-transparent">
-                        {displayName && displayName}
-                      </h3>
-                    </div>
-                  )}
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <div className="flex flex-col   items-center gap-1">
+                        <div
+                          tabIndex={0}
+                          className=" m-1 w-14  rounded-full border "
+                        >
+                          <img
+                            src={
+                              photoURL
+                                ? photoURL
+                                : "https://i.ibb.co/vV9hYVf/no-avater.jpg"
+                            }
+                            alt=""
+                            className=" rounded-full "
+                          />
+                        </div>
+                        {displayName && (
+                          <h3 className=" text-xs md:text-sm text-title-color font-medium text-center hover:bg-transparent ">
+                            {displayName && displayName}
+                          </h3>
+                        )}
+                      </div>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="btn bg-transparent border-none  bg-opacity-5 text-secondary capitalize pt-3"
+                      >
+                        <span className=" text-lg  sm:text-xl -mr-1">
+                          <BiLogOutCircle></BiLogOutCircle>
+                        </span>{" "}
+                        logout
+                      </button>
+                    </li>
+                  </ul>
                 </div>
               )}
-
-              {currentUser ? (
-                <button
-                  onClick={logout}
-                  className="btn text-primary bg-transparent border-none hover:bg-primary bg-opacity-5 hover:text-white capitalize"
-                >
-                  <span className=" text-lg  sm:text-xl -mr-1">
-                    <BiLogOutCircle></BiLogOutCircle>
-                  </span>{" "}
-                  logout
-                </button>
-              ) : (
+              {!currentUser && !loading && (
                 <Link
                   to="/login"
                   className="btn text-primary bg-transparent border-none hover:bg-primary bg-opacity-5 text-base font-medium hover:text-white capitalize "
