@@ -41,7 +41,7 @@ function AuthProvider({ children }) {
     });
   }, [auth]);
   // register user
-  const register = (name, email, password) => {
+  const register = (image, name, email, password) => {
     setError(false);
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
@@ -51,6 +51,7 @@ function AuthProvider({ children }) {
         // update profile
         updateProfile(auth.currentUser, {
           displayName: name,
+          photoURL: image,
         });
       })
       .catch((err) => setError(err));

@@ -6,7 +6,9 @@ import SectionWrapperSecodary from "../layout/SectionWrapperSecodary";
 import LoginButton from "../shared/LoginButton";
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const { error: newError, loginWithGoogle } = useAuth();
+  const { error: newError, loginWithGoogle, loading } = useAuth();
+  console.log(loading);
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   // login with google
@@ -26,6 +28,7 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const target = e.target;
+    const image = target.image.value;
     const name = target.name.value;
     const email = target.email.value;
     const password = target.password.value;
@@ -42,16 +45,17 @@ function Signup() {
       setError(newError.code);
     } else {
       // register
-      register(name, email, password);
+      register(image, name, email, password);
 
       // navigate to
       setTimeout(() => navigate("/"), 2000);
     }
 
     // reset input fields
-    target.name.value = "";
-    target.email.value = "";
-    target.password.value = "";
+    // target.reset();
+    // target.name.value = "";
+    // target.email.value = "";
+    // target.password.value = "";
   };
 
   const handleShow = () => {
@@ -61,7 +65,7 @@ function Signup() {
   return (
     <section>
       <SectionWrapperSecodary>
-        <div className="  rounded-md mt-10 sm:mt-20 ">
+        <div className="  rounded-md mt-10 md:mt-40">
           <div className="border  px-6 sm:px-20 py-6 sm:py-20  rounded-md  ">
             <h3 className=" text-3xl md:text-5xl font-semibold text-primary text-center ">
               Sign Up
@@ -73,6 +77,20 @@ function Signup() {
               onSubmit={handleSubmit}
               className="card-body p-0 pt-5 sm:pt-10 "
             >
+              <div className="form-control">
+                <label className="label">
+                  <span className="text-base sm:text-xl text-title-color">
+                    Image URL
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your image url"
+                  className="input input-bordered"
+                  name="image"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="text-base sm:text-xl text-title-color">
