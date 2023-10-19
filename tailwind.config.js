@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#22015B",
+        primary: "#372259",
         "title-color": "#1C1D1B",
         secondary: "#CA334F",
+        ash: "#575757",
       },
       maxWidth: {
         standard: "90rem",

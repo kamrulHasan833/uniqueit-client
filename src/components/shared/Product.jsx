@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 function Poduct({ product }) {
   const { pathname } = useLocation();
-  const { name, imageURL, brand, rating, price, type } = product;
+  const { _id, name, imageURL, brand, rating, price, type } = product;
 
   return (
     <div className="flex flex-col group cursor-pointer">
@@ -38,7 +38,10 @@ function Poduct({ product }) {
       </div>
       {pathname !== "/" && (
         <div className="flex  gap-2">
-          <Link className="btn-primary bg-transparent text-primary hover:bg-primary border border-primary hover:border-primary hover:text-white text-sm md:text-base px-2 md:px-5 py-1 md:py-2 rounded-md ">
+          <Link
+            to={`/products/details/${_id}`}
+            className="btn-primary bg-transparent text-primary hover:bg-primary border border-primary hover:border-primary hover:text-white text-sm md:text-base px-2 md:px-5 py-1 md:py-2 rounded-md "
+          >
             Details
           </Link>
           <Link className="btn-primary bg-transparent border border-secondary hover:border-secondary hover:bg-secondary text-secondary hover:text-white text-sm md:text-base px-2 md:px-3 py-1 md:py-2 rounded-md">

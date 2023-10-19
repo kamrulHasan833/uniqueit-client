@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 function Brand({ brand: newbrand }) {
   const { brand, image } = newbrand;
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(`products/${brand}`);
+  };
   return (
-    <div className=" cursor-pointer group">
+    <div className=" cursor-pointer group" onClick={handleNavigate}>
       <div className="rounded-full bg-primary bg-opacity-5 ">
         <img
           src={image.dark ? image.dark : image.light}

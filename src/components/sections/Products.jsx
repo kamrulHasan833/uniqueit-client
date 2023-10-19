@@ -51,6 +51,6 @@ function Products({ loadProducts }) {
 }
 
 Products.propTypes = {
-  loadProducts: PropTypes.node,
+  loadProducts: PropTypes.array,
 };
 export default Products;

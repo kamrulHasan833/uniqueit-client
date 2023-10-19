@@ -5,7 +5,7 @@ function Slide({ slide }) {
   const { title, image, desc } = slide;
 
   return (
-    <div className=" relative">
+    <div className=" relative" onClick={() => console.log(title)}>
       <div>
         <img src={image} alt="" />
       </div>
