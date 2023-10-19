@@ -31,7 +31,7 @@ function Navbar() {
   const items = (
     <>
       <NavItem path="/">Home</NavItem>
-      <NavItem path="/about">About</NavItem>
+      <NavItem path="/create-product">Create Rroduct</NavItem>
       <NavItem path="/blogs">Blog</NavItem>
     </>
   );
