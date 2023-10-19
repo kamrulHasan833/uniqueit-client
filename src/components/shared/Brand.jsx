@@ -11,7 +11,7 @@ function Brand({ brand: newbrand }) {
           className="rounded-full  group-hover:scale-125 transition-all"
         />
       </div>
-      <h3 className="text-xl font-semibold text-titile-color text-center mt-2 uppercase">
+      <h3 className="text-xl font-semibold text-titile-color text-center mt-4 uppercase">
         {brand}
       </h3>
     </div>

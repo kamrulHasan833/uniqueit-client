@@ -102,6 +102,7 @@ function CreateProduct() {
                     </label>
                     <input
                       type="text"
+                      defaultValue=""
                       placeholder="Product Rating"
                       className="input input-bordered"
                       name="rating"

@@ -5,7 +5,8 @@ function Footer() {
   const [brands, setBrands] = useState(null);
   useEffect(() => {
     const loadBrand = async () => {
-      const res = await fetch(`http://localhost:5173/brands.json`);
+      const res = await fetch(`http://localhost:5000/brands`);
+
       const data = await res.json();
       setBrands(data);
     };
