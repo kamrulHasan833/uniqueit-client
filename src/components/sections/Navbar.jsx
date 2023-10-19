@@ -1,6 +1,6 @@
 import HeadRoom from "react-headroom";
 import { BiLogOutCircle } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useIsUser from "../../hooks/useIsUser";
 import { useAuth } from "../contexts/authContext";
@@ -10,6 +10,7 @@ function Navbar() {
   const navigate = useNavigate();
   const { logout, user, loading } = useAuth();
   const { displayName, photoURL } = user;
+  const { pathname } = useLocation();
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -32,13 +33,15 @@ function Navbar() {
     <>
       <NavItem path="/">Home</NavItem>
       <NavItem path="/create-product">Create Rroduct</NavItem>
-      <NavItem path="/blogs">Blog</NavItem>
+      <NavItem path="/products/all">All Products</NavItem>
     </>
   );
 
   return (
     <div
-      className="bg-transparent md:absolute top-0 left-0  z-10 w-full "
+      className={`bg-transparent ${
+        pathname === "/" ? "md:absolute top-0 left-0 " : "shadow-lg"
+      }  z-10 w-full `}
       data-aos="fade-down"
     >
       <HeadRoom style={{ zIndex: 9999 }}>

@@ -46,11 +46,13 @@ function CreateProduct() {
   };
   return (
     <SectionWrapper>
-      <div className="hero min-h-screen ">
+      <div className="hero mt-10 md:mt-15">
         <div className="w-full ">
           <div className="text-center lg:text-left mb-5 md:mb-10">
-            <h1 className="text-5xl font-bold">Create Product</h1>
-            <p className="py-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              Create Product
+            </h1>
+            <p className="mt-2 pb-6">
               Please create a product by filling the flowing fields.
             </p>
           </div>

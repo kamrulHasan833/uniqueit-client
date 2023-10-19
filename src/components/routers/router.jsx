@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../../App";
+import AllProducts from "../pages/AllProducts";
 import CreateProduct from "../pages/CreateProduct";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -25,6 +26,13 @@ const router = createBrowserRouter([
       {
         path: "/create-product",
         element: <CreateProduct></CreateProduct>,
+      },
+      {
+        path: "/products/:id",
+        element: <AllProducts></AllProducts>,
+        loader: async ({ params }) =>
+          params.id !== "all" &&
+          (await fetch("http://localhost:5000/products")),
       },
     ],
   },

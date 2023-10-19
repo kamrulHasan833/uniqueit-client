@@ -101,7 +101,7 @@ function Signup() {
   return (
     <section>
       <SectionWrapperSecodary>
-        <div className="  rounded-md mt-10 md:mt-40">
+        <div className="  rounded-md mt-10 ">
           <div className="border  px-6 sm:px-20 py-6 sm:py-20  rounded-md  ">
             <h3 className=" text-3xl md:text-5xl font-semibold text-primary text-center ">
               Sign Up
