@@ -6,12 +6,12 @@
 @tailwind utilities;
 .swiper-button-prev {
   margin-left: 20px;
-  color: #22015b;
+  color: #ca334f;
 }
 
 .swiper-button-next {
   margin-right: 20px;
-  color: #22015b;
+  color: #ca334f;
 }
 .swiper-pagination-bullet {
   color: red;

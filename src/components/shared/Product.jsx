@@ -1,23 +1,29 @@
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Poduct({ product }) {
   const { pathname } = useLocation();
   const { _id, name, imageURL, brand, rating, price, type } = product;
-
+  const navigate = useNavigate();
+  const handleToNavigate = () => {
+    navigate(`/products/details/${_id}`);
+  };
   return (
     <div className="flex flex-col group cursor-pointer">
-      <div className=" shadow-lg mb-3 relative overflow-hidden group-last:">
+      <div
+        className=" shadow-lg mb-3 relative overflow-hidden group-last:"
+        onClick={handleToNavigate}
+      >
         <img
           src={imageURL}
           alt=""
-          className="group-hover:scale-150 duration-1000"
+          className="group-hover:scale-125 duration-1000"
         />
         <div className=" absolute top-0 left-0 group-hover:w-full group-hover:h-full bg-black bg-opacity-10 "></div>
       </div>
       <div className={`flex-grow ${pathname === "/" && "text-center"} mb-6`}>
         <h3 className={`font-bold  text-title-color text-lg `}>
-          {name.length > 20 ? name.slice(0, 20) + "..." : name}
+          {name && name.length > 20 ? name.slice(0, 20) + "..." : name}
         </h3>
 
         {pathname !== "/" && (

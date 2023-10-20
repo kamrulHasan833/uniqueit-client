@@ -1,4 +1,5 @@
 import HeadRoom from "react-headroom";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -33,7 +34,7 @@ function Navbar() {
     <>
       <NavItem path="/">Home</NavItem>
       <NavItem path="/create-product">Add Product</NavItem>
-      <NavItem path={`/carts/${user.email}`}>My Cart</NavItem>
+      <NavItem path={`/products/all`}>Products</NavItem>
     </>
   );
 
@@ -89,6 +90,10 @@ function Navbar() {
               </ul>
             </div>
             <div className="navbar-end">
+              <Link to={`/carts/${user.email}`}>
+                {" "}
+                <AiOutlineShoppingCart className="text-2xl md:text-3xl hover:text-secondary  text-primary cursor-pointer mr-6"></AiOutlineShoppingCart>
+              </Link>
               {/* user dropdown */}
               {currentUser && !loading && (
                 <div className="dropdown dropdown-bottom dropdown-end">

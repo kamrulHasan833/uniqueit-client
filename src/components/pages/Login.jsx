@@ -8,6 +8,7 @@ import LoginButton from "../shared/LoginButton";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { state } = useLocation();
+
   const [error, setError] = useState(false);
   const { login, loginWithGoogle } = useAuth();
 
@@ -20,34 +21,24 @@ function Login() {
     loginWithGoogle()
       .then(() => {
         // navigate to
-        if (state && state.pathname.includes("service")) {
-          Swal.fire({
-            title: "Success!",
-            text: "You have logged in successfully.",
-            icon: "success",
-            confirmButtonColor: "#22015B",
-            confirmButtonText: "Go On",
-          }).then((result) => {
-            if (result.isConfirmed) {
+
+        Swal.fire({
+          title: "Success!",
+          text: "You have logged in successfully.",
+          icon: "success",
+          confirmButtonColor: "#22015B",
+          confirmButtonText: "Go On",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (!state) {
+              navigate("/");
+            } else {
               navigate(state.pathname, {
                 state: state.state,
               });
             }
-          });
-          // navigate to
-        } else if (!state) {
-          Swal.fire({
-            title: "Success!",
-            text: "You have logged in successfully.",
-            icon: "success",
-            confirmButtonColor: "#22015B",
-            confirmButtonText: "Go On",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/");
-            }
-          });
-        }
+          }
+        });
       })
       .catch((err) => {
         setError(err);
@@ -66,37 +57,23 @@ function Login() {
     login(email, password)
       .then(() => {
         // navigate to
-        if (state && state.pathname.includes("service")) {
-          Swal.fire({
-            title: "Success!",
-            text: "You have logged in successfully.",
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#22015B",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Continue",
-          }).then((result) => {
-            if (result.isConfirmed) {
+        Swal.fire({
+          title: "Success!",
+          text: "You have logged in successfully.",
+          icon: "success",
+          confirmButtonColor: "#22015B",
+          confirmButtonText: "Go On",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (!state) {
+              navigate("/");
+            } else {
               navigate(state.pathname, {
                 state: state.state,
               });
             }
-          });
-        } else if (!state) {
-          Swal.fire({
-            title: "Success!",
-            text: "You have logged in successfully.",
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#22015B",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Explore",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/");
-            }
-          });
-        }
+          }
+        });
       })
       .catch((err) => {
         setError(err);

@@ -6,23 +6,26 @@ import PromoSlider from "../sections/PromoSlider";
 
 function AllProducts() {
   const loaderProducts = useLoaderData();
-  const promoSlides = loaderProducts
-    ? loaderProducts.filter((loaderProduct, ind) => ind < 3)
-    : [];
-  console.log(promoSlides);
+  const promoSlides =
+    loaderProducts && loaderProducts.length > 0
+      ? loaderProducts.filter((loaderProduct, ind) => ind < 3)
+      : [];
+
   return (
     <main>
       {promoSlides && promoSlides.length > 0 ? (
         <PromoSlider promoSlides={promoSlides}></PromoSlider>
-      ) : (
+      ) : !loaderProducts ? (
         <HotDeal></HotDeal>
+      ) : (
+        ""
       )}
       {loaderProducts && loaderProducts.length === 0 ? (
         <NoDataInfo>No Product Found! </NoDataInfo>
       ) : !loaderProducts ? (
         <Products loadProducts={[]}></Products>
       ) : (
-        <Products loadProducts={loaderProducts}></Products>
+        <Products loadProducts={loaderProducts && loaderProducts}></Products>
       )}
     </main>
   );

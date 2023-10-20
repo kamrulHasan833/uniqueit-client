@@ -14,7 +14,7 @@ function HotDeal() {
               Hot Deals{" "}
             </h3>
             <span>
-              <CiDiscount1 className="text-3xl md:text-4xl lg:text-5xl rounded-full text-white bg-secondary"></CiDiscount1>
+              <CiDiscount1 className="text-3xl md:text-4xl lg:text-5xl rounded-full hover:text-secondary hover:bg-white text-white bg-secondary"></CiDiscount1>
             </span>
           </div>
         </SectionWrapper>

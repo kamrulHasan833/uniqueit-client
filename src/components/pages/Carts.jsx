@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import SectionWrapper from "../layout/SectionWrapper";
 import NoDataInfo from "../sections/NoDataInfo";
@@ -44,19 +44,33 @@ function Carts() {
   };
   return (
     <SectionWrapper>
-      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mt-10 md:mt-14 mb-6">
-        My Cart Products
-      </h3>
-
       {products && products.length > 0 ? (
-        <div className="min-h-screen grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-3">
-          {products.map((cart) => (
-            <Cart key={cart._id} cart={cart} handleDelete={handleDelete}></Cart>
-          ))}{" "}
-        </div>
+        <>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mt-10 md:mt-14 mb-6">
+            My Cart Products
+          </h3>
+          <div className="min-h-[37vh] grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-3">
+            {products.map((cart) => (
+              <Cart
+                key={cart._id}
+                cart={cart}
+                handleDelete={handleDelete}
+              ></Cart>
+            ))}{" "}
+          </div>
+        </>
       ) : (
         <NoDataInfo>No product added</NoDataInfo>
       )}
+      <div className="flex justify-center items-center">
+        {" "}
+        <Link
+          to="/products/all"
+          className="px-2 md:px-4 py-1 md:py-2 text-sm md:text-base text-white rounded-lg  bg-primary hover:bg-secondary"
+        >
+          Add More
+        </Link>
+      </div>
     </SectionWrapper>
   );
 }

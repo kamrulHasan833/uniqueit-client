@@ -22,7 +22,7 @@ function PromoSlide({ promoSlide }) {
               ${price}{" "}
             </p>
             <span className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold  text-gray-700">
-              ${priceAfterDiscount}
+              ${priceAfterDiscount.toFixed(2)}
             </span>
           </div>
           <div className="mt-5 md:mt-10">
