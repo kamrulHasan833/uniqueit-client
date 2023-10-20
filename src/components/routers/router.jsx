@@ -45,7 +45,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/product/${params.id}`),
+          await fetch(
+            `https://uniqueit-server.vercel.app/product/${params.id}`
+          ),
         errorElement: <NotFoundPage></NotFoundPage>,
       },
       {
@@ -56,7 +58,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/product/${params.id}`),
+          await fetch(
+            `https://uniqueit-server.vercel.app/product/${params.id}`
+          ),
         errorElement: <NotFoundPage></NotFoundPage>,
       },
       {
@@ -64,7 +68,9 @@ const router = createBrowserRouter([
         element: <AllProducts></AllProducts>,
         loader: async ({ params }) =>
           params.id !== "all" &&
-          (await fetch(`http://localhost:5000/products/${params.id}`)),
+          (await fetch(
+            `https://uniqueit-server.vercel.app/products/${params.id}`
+          )),
         errorElement: <NotFoundPage></NotFoundPage>,
       },
       {
@@ -75,7 +81,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/carts/${params.username}`),
+          await fetch(
+            `https://uniqueit-server.vercel.app/carts/${params.username}`
+          ),
         errorElement: <NotFoundPage></NotFoundPage>,
       },
     ],

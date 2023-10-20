@@ -7,7 +7,7 @@ function Brands() {
   const [brands, setBrands] = useState(null);
   useEffect(() => {
     const loadBrand = async () => {
-      const res = await fetch(`http://localhost:5000/brands`);
+      const res = await fetch(`https://uniqueit-server.vercel.app/brands`);
       const data = await res.json();
       setBrands(data);
     };

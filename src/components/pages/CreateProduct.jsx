@@ -22,7 +22,7 @@ function CreateProduct() {
       price,
     };
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://uniqueit-server.vercel.app/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

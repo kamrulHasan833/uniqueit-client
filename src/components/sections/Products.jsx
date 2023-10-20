@@ -9,7 +9,7 @@ function Products({ loadProducts }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://uniqueit-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         const homeProducts =

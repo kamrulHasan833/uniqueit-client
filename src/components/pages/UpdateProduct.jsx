@@ -26,7 +26,7 @@ function UpdateProduct() {
       price,
     };
 
-    fetch(`http://localhost:5000/products/${_id}`, {
+    fetch(`https://uniqueit-server.vercel.app/products/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

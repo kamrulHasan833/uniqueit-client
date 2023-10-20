@@ -13,7 +13,7 @@ function ProductDetails() {
   const [brands, setBrands] = useState(null);
   useEffect(() => {
     const loadBrand = async () => {
-      const res = await fetch(`http://localhost:5000/brands`);
+      const res = await fetch(`https://uniqueit-server.vercel.app/brands`);
 
       const data = await res.json();
       setBrands(data);
@@ -37,7 +37,7 @@ function ProductDetails() {
       username: email,
     };
     if (email) {
-      fetch("http://localhost:5000/carts", {
+      fetch("https://uniqueit-server.vercel.app/carts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
