@@ -44,7 +44,10 @@ function Poduct({ product }) {
           >
             Details
           </Link>
-          <Link className="btn-primary bg-transparent border border-secondary hover:border-secondary hover:bg-secondary text-secondary hover:text-white text-sm md:text-base px-2 md:px-3 py-1 md:py-2 rounded-md">
+          <Link
+            to={`/products/update/${_id}`}
+            className="btn-primary bg-transparent border border-secondary hover:border-secondary hover:bg-secondary text-secondary hover:text-white text-sm md:text-base px-2 md:px-3 py-1 md:py-2 rounded-md"
+          >
             Update
           </Link>
         </div>

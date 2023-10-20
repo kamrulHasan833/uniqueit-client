@@ -32,8 +32,8 @@ function Navbar() {
   const items = (
     <>
       <NavItem path="/">Home</NavItem>
-      <NavItem path="/create-product">Create Rroduct</NavItem>
-      <NavItem path="/products/all">All Products</NavItem>
+      <NavItem path="/create-product">Add Product</NavItem>
+      <NavItem path={`/carts/${user.email}`}>My Cart</NavItem>
     </>
   );
 
@@ -67,7 +67,7 @@ function Navbar() {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-md w-80 gap-1"
+                  className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-md w-80 gap-1 p-6"
                 >
                   {items}
                 </ul>

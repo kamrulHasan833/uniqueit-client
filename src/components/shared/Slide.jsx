@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import SectionWrapper from "../layout/SectionWrapper";
 
 function Slide({ slide }) {
   const { title, image, desc } = slide;
 
   return (
-    <div className=" relative" onClick={() => console.log(title)}>
+    <div className=" relative">
       <div>
         <img src={image} alt="" />
       </div>
@@ -14,12 +15,17 @@ function Slide({ slide }) {
           <h1 className="text-2xl md:text-4xl lg:text-5xl text-secondary 2xl:text-7xl font-bold max-w-32 max-w-xs md:max-w-full mb-0 md:mb-2">
             {title}
           </h1>
-          <p className="text-primary max-w-[200px] md:max-w-xs lg:max-w-full lg:text-center">
+          <p className="max-w-[200px] md:max-w-xs lg:max-w-full lg:text-center">
             {desc}
           </p>
-          <button className="text-white font-bold px-3 md:px-6 py-2 md:py-3 bg-primary hover:bg-secondary rounded-md mt-6">
-            Blog
-          </button>
+          <div className="mt-6 md:mt-10 text-center">
+            <Link
+              to="/products/all"
+              className="text-white font-bold px-3 md:px-6 py-2 md:py-3 bg-primary hover:bg-secondary rounded-md mt-6"
+            >
+              All Product
+            </Link>
+          </div>
         </div>
       </SectionWrapper>
     </div>

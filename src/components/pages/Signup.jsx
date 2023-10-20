@@ -12,10 +12,8 @@ function Signup() {
     error: newError,
     loginWithGoogle,
 
-    loading,
     auth,
   } = useAuth();
-  console.log(loading);
 
   const [error, setError] = useState("");
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function PromoSlide({ promoSlide }) {
-  const { name, price, rating } = promoSlide;
+  const { _id, price, rating } = promoSlide;
   const discount = rating * 5;
   const priceAfterDiscount = price - price * (discount / 100);
 
@@ -26,7 +26,10 @@ function PromoSlide({ promoSlide }) {
             </span>
           </div>
           <div className="mt-5 md:mt-10">
-            <Link className="text-sm sm:text-base  px-3 py-2 md:px-6 md:py-4 rounded-md bg-primary hover:bg-secondary text-white mt-5 md:mt-10">
+            <Link
+              to={`/products/details/${_id}`}
+              className="text-sm sm:text-base  px-3 py-2 md:px-6 md:py-4 rounded-md bg-primary hover:bg-secondary text-white mt-5 md:mt-10"
+            >
               Buy Now
             </Link>
           </div>

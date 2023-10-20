@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAuth } from "../contexts/authContext";
 import SectionWrapper from "../layout/SectionWrapper";
 
 function ProductDetails() {
   const product = useLoaderData();
   const { imageURL, name, description, price, type, brand, rating } = product;
   const navigate = useNavigate();
-
+  const { user } = useAuth();
+  const email = user.email ? user.email : null;
   const [brands, setBrands] = useState(null);
   useEffect(() => {
     const loadBrand = async () => {
@@ -23,31 +25,43 @@ function ProductDetails() {
     e.preventDefault();
     const form = e.target;
     const quantity = parseInt(form.quantity.value);
-    const cardProduct = { ...product, quantity };
-    fetch("http://localhost:5000/carts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cardProduct),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Product have been added  successfully.",
-            icon: "success",
-            confirmButtonColor: "#22015B",
-            confirmButtonText: "Go On",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/cards");
-            }
-          });
-        }
+    const cardProduct = {
+      imageURL,
+      name,
+      description,
+      price,
+      type,
+      brand,
+      rating,
+      quantity,
+      username: email,
+    };
+    if (email) {
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cardProduct),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Success!",
+              text: "Product have been added  successfully.",
+              icon: "success",
+              confirmButtonColor: "#22015B",
+              confirmButtonText: "Go On",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate(`/carts/${email}`);
+              }
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
